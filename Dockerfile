@@ -1,6 +1,6 @@
 FROM elixir:1.5
 
-ENV RUST_VERSION="1.20.0"
+ENV RUST_VERSION="1.22.0"
 ENV NODE_VERSION="8.x"
 ENV KUBECTL_VERSION="v1.7.0"
 
@@ -38,6 +38,9 @@ RUN apt-get update \
     && apt-get -y install python-pip python-dev build-essential \
     && pip install --upgrade pip \
     && pip install --upgrade awscli
+
+# Install Google CLoud CLI
+RUN apt-get update && apt-get -y install gcloud
 
 # Install kubectl
 ENV KUBECTL_DOWNLOAD_URL="https://storage.googleapis.com/kubernetes-release/release/$KUBECTL_VERSION/bin/linux/amd64/kubectl"
