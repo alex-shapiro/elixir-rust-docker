@@ -2,7 +2,8 @@ A Docker image for building Elixir applications and deploying them via AWS CLI, 
 
 Concretely, it includes:
 
-* Elixir 1.5
+* Erlang 20.1
+* Elixir 1.5.1
 * Rust 1.22
 * Node.js 8.9
 * Docker (latest version)
