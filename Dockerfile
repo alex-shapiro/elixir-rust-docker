@@ -2,7 +2,6 @@ FROM elixir:1.5
 
 ENV RUST_VERSION="1.22.0"
 ENV NODE_VERSION="8.x"
-ENV KUBECTL_VERSION="v1.7.0"
 
 RUN apt-get update && \
     apt-get install \
@@ -39,11 +38,12 @@ RUN apt-get update \
     && pip install --upgrade pip \
     && pip install --upgrade awscli
 
-# Install Google CLoud CLI
-RUN apt-get update && apt-get -y install gcloud
-
-# Install kubectl
-ENV KUBECTL_DOWNLOAD_URL="https://storage.googleapis.com/kubernetes-release/release/$KUBECTL_VERSION/bin/linux/amd64/kubectl"
-RUN curl -LO $KUBECTL_DOWNLOAD_URL \
-    && chmod +x /kubectl \
-    && mv ./kubectl /usr/local/bin/kubectl
+# Install Google Cloud SDK
+# 1. Add the Cloud SDK distribution URI as a package source
+# 2. Import the Google Cloud Platform public key
+# 3. Update the package list and install the Cloud SDK
+RUN echo "deb http://packages.cloud.google.com/apt cloud-sdk-$(lsb_release -c -s) main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list \
+    && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - \
+    && apt-get update \
+    && apt-get -y install google-cloud-sdk \
+    && apt-get -y install kubectl

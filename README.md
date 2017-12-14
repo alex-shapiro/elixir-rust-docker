@@ -8,4 +8,4 @@ Concretely, it includes:
 * Docker (latest version)
 * aws-cli (latest version)
 * gcloud (latest version)
-* kubectl 1.7
+* kubectl (latest version)
