@@ -1,7 +1,7 @@
 FROM erlang:20.1
 
-ENV ELIXIR_VERSION="v1.5.2"
-ENV RUST_VERSION="1.22.0"
+ENV ELIXIR_VERSION="v1.6.5"
+ENV RUST_VERSION="1.26.0"
 ENV NODE_VERSION="8.x"
 ENV LANG="C.UTF-8"
 
@@ -18,7 +18,7 @@ RUN apt-get update && \
 # Install Elixir
 RUN set -xe \
     && ELIXIR_DOWNLOAD_URL="https://github.com/elixir-lang/elixir/archive/${ELIXIR_VERSION}.tar.gz" \
-    && ELIXIR_DOWNLOAD_SHA256="7317b7a9d3b5bef2b5cd56de738f2b37fd4111e24efbe71a3e39bea1b702ff6c" \
+    && ELIXIR_DOWNLOAD_SHA256="defe2bed953ee729addf1121db3fa42a618ef1d6c57a1f489da03b0e7a626e89" \
     && curl -fSL -o elixir-src.tar.gz $ELIXIR_DOWNLOAD_URL \
     && echo "$ELIXIR_DOWNLOAD_SHA256  elixir-src.tar.gz" | sha256sum -c - \
     && mkdir -p /usr/local/src/elixir \
